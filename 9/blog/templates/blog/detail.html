@@ -1,0 +1,229 @@
+{% extends 'blog/base.html' %}
+
+{% block title%} 
+    {{article.title}} 
+{%endblock%}
+
+{% block main %}
+ <!-- Page Header-->
+ <header class="masthead" style="background-image: url('{{ article.thumbnail.url }}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading ">
+                    <h1 style="font-size:40px;">{{ article.title }}</h1>
+                    <time>{{article.publish}}</time>
+                </div>
+            </div>
+        </div>
+    </div>
+  </header>
+<!-- Post Content-->
+<article class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center ">
+            <div class="col-md-10 col-lg-8 col-xl-7 text-justify ">
+                <h2>{{ article.description | linebreaks}}</h2>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+                        <!--My Comment creat here -->
+<div class="col-md-8 card mb-4  mt-3 ">
+    <div class="card-body">
+      <a href="#" ><h1>Comment</h1></a>
+      <h2>{{ comments.count }} comments</h2>
+      {% for comment in comments %}
+          <div class=" comments" style="padding:10px;">
+            
+              <p class="font-weight-bold ">
+                  {{comment.name}}
+                  <span class="text-muted font-weight-normal">
+                      {{comment.created}}
+                  </span>
+              </p>
+              <p class="comments" >
+                  {{comment.body|linebreaks}}<br>
+              </p>
+              
+          </div>
+          <hr>
+      {% endfor %}
+
+    </div>
+</div>
+
+
+
+<!--
+<div class="card-body">
+    {% if new_comment %}
+    <div class="alert alert-success" rol="alert">
+        Your comment is awating moderation 
+    </div>
+    {% else %}
+    <h3>Leave a comment </h3>
+    <form method="post" style="margin-top: 1.3em;">
+        {{comment_form.as_p}}
+        {% csrf_token %}
+
+        <button type="submit" class="btn btn-primary btn-lg button">
+            Submit
+        </button>
+    </form>
+    {% endif %}
+</div>
+
+-->
+    
+        
+
+
+
+
+<!--
+
+<form method="post" style="margin-top: 1.3em;">
+    {% csrf_token %}
+    <p>
+      <label for="id_name">Name:</label>
+      <input type="text" name="name" class="cantact" maxlength="100" required="" id="id_name">
+    </p>
+    <p>
+      <label for="id_body">Body:</label>
+      <textarea name="body" cols="40" rows="10" class="style-body" required="" id="id_body"></textarea>
+    </p>
+  
+    <button type="submit" class="btn btn-primary btn-lg button">
+        Submit
+    </button>
+</form>
+<br><br><br>
+
+-->
+
+
+
+
+
+
+
+                  <div class="card-body">
+                    {% if new_comment %}
+                    <div class="alert alert-success" rol="alert">
+                        Your comment is awating moderation 
+                    </div>
+                    {% else %}
+                    <h3>Leave a comment </h3>
+                    <form
+                      class="form-area contact-form text-right"
+                      id="#"
+                      method="post"
+                    >
+                      {% csrf_token %}
+                      <div class="row">
+                        <div class="col-lg-6 form-group">
+                          <input
+                            name="name"
+                            placeholder="Enter your name"
+                            onfocus="this.placeholder = ''"
+                            onblur="this.placeholder = 'Enter your name'"
+                            class="cantact"
+                            required=""
+                            type="text"
+                            maxlength="100"
+                            required=""
+                            id="id_name" 
+                                                  
+                          />
+
+                          <div class="col-lg-6 form-group">
+                            <textarea
+                              class="style-body"
+                              name="body"
+                              placeholder="Enter Messege"
+                              onfocus="this.placeholder = ''"
+                              onblur="this.placeholder = 'Enter Messege'"
+                              required=""
+                              cols="40"
+                              rows="10" 
+                              id="id_body"
+                            ></textarea>
+
+                            <div class="col-lg-12">
+                              <div class="alert-msg" style="text-align: left;"></div>
+                              <button
+                                class="btn btn-primary btn-lg button" type="submit"
+                                style="float: right;"
+                              >
+                                Send Message
+                              </button>
+                    {% endif %}
+                  </div>
+
+
+
+
+                           
+                            <!--
+                
+                          <input
+                            name="email"
+                            placeholder="Enter email address"
+                            pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
+                            onfocus="this.placeholder = ''"
+                            onblur="this.placeholder = 'Enter email address'"
+                            class="common-input mb-20 form-control"
+                            required=""
+                            type="email"
+                          />
+                
+                          <input
+                            name="subject"
+                            placeholder="Enter subject"
+                            onfocus="this.placeholder = ''"
+                            onblur="this.placeholder = 'Enter subject'"
+                            class="common-input mb-20 form-control"
+                            required=""
+                            type="text"
+                          />
+                        </div>
+                        <div class="col-lg-6 form-group">
+                          <textarea
+                            class="common-textarea form-control"
+                            name="message"
+                            placeholder="Enter Messege"
+                            onfocus="this.placeholder = ''"
+                            onblur="this.placeholder = 'Enter Messege'"
+                            required=""
+                          ></textarea>
+                        </div>
+                        <div class="col-lg-12">
+                          <div class="alert-msg" style="text-align: left;"></div>
+                          <button
+                            class="primary-btn text-uppercase" type="submit"
+                            style="float: right;"
+                          >
+                            Send Message
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                    -->
+
+    
+
+
+ <!--   <form method="post ">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <input type="submit" value="sendcomment">
+    </form>
+    -->
+
+
+{% endblock %}
